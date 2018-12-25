@@ -3,6 +3,7 @@ const client = new Discord.Client();
 var prefix = "="
 client.on('ready', () => {
     console.log('I am ready!');
+    client.user.setGame(`**type =help**`, 'https://www.twitch.tv/activate')
 });
  
 client.on('message', message => {
