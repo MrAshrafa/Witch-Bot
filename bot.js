@@ -12,6 +12,11 @@ client.on('message', message => {
     }
 });
 client.on('message', message => {
+    if (message.content === '=help') {
+        message.reply('تم ارساله لك في حاص');
+        }
+});
+client.on('message', message => {
   if(message.content.startsWith(prefix + "voicesetup")) {
   if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply(':x: **اسف ليس لديك صلاحية كافية لصنع روم**');
   if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply(':x: **اسف ليس لدي صلاحية**');
@@ -114,13 +119,13 @@ client.on('message', message => {
       message.channel.send(IzRo);
     });
     client.on('message', message => {
-    var prefix = "-";
-              if(!message.channel.guild) return;
+
+          if(!message.channel.guild) return;
     if(message.content.startsWith(prefix + 'bc')) {
     if(!message.channel.guild) return message.channel.send('**This Command Only For Servers**').then(m => m.delete(5000));
   if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**You Dont Have perms** `ADMINISTRATOR`' );
     let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
-    let copy = "Speed Bot";
+    let copy = "WithcBot";
     let request = `Requested By ${message.author.username}`;
     if (!args) return message.reply('**Write Some Things To Broadcast**');message.channel.send(`**Are You Sure \nThe Broadcast: ** \` ${args}\``).then(msg => {
     msg.react('✅')
@@ -580,7 +585,7 @@ ${prefix}عواصم
 لعبة عواصم
 ----------{شكرا لستعمالك بوت}
        **  `)
-   message.channel.sendEmbed(embed)
+   message.author.sendEmbed(embed)
    
    }
    }); 
