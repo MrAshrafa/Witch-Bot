@@ -416,8 +416,8 @@ if(!message.channel.guild) return;
     }
 });
 client.on('message', message => {
-var prefix = "-";
-   if(!message.channel.guild) return;
+
+  if(!message.channel.guild) return;
 if(message.content.startsWith(prefix + 'clear')) {
 if(!message.channel.guild) return message.channel.send('**This Command is Just For Servers**').then(m => m.delete(5000));
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return      message.channel.send('**You Do not have permission** `MANAGE_MESSAGES`' );
@@ -548,4 +548,57 @@ if (message.content.toLowerCase().startsWith(prefix + `close`)) {
 }
 
 });
+client.on("message", message => {
+    if (message.content === (prefix + "help")) {
+     const embed = new Discord.RichEmbed() 
+         .setColor("RANDOM")
+         .setThumbnail(message.author.avatarURL)
+         .setDescription(`**
+----------{WhitchBot}
+----------prefix[${predix}]
+----general command
+${prefix}id - لعرض ملفك شخصي
+${prefix}avatar - لعرض صورت حسابك
+${prefix}bot - لعرض معلومات عن بوت
+${prefix}ping - لعرض سرعة اتصال بوت
+${prefix}server - لعرض معلومات عن سيرفر
+${prefix}new - لعمل تذكرا
+${prefix}count - لمعرفة عدد اعضاء سيرفر
+----admin command
+${prefix}bc - لرسالة رسالة لكل
+${prefix}ban - لطرد شخص من سيرفر
+${prefix}kick - لطرد شخص من سيرفر بدون تبنيده
+${prefix}mute - {muted}لمنع شخص من كتابة لازم رتبة 
+${prefix}unmute - لفك ميوت عن شخص
+${prefix}clear - لمسح شات
+----games command
+${prefix}slots - لعبة فواكه
+${prefix}فكك 
+لعبة فكك
+${prefix}عواصم
+لعبة عواصم
+----------{شكرا لستعمالك بوت}
+       **  `)
+   message.channel.sendEmbed(embed)
+   
+   }
+   }); 
+client.on('message', function(msg) {
+    if(msg.content.startsWith (prefix  + 'server')) {
+      let embed = new Discord.RichEmbed()
+      .setColor('RANDOM')
+      .setThumbnail(msg.guild.iconURL)
+      .setTitle(`Showing Details Of  **${msg.guild.name}*`)
+      .addField(':globe_with_meridians:** نوع السيرفر**',`[** __${msg.guild.region}__ **]`,true)
+      .addField(':medal:** __الرتب__**',`[** __${msg.guild.roles.size}__ **]`,true)
+      .addField(':red_circle:**__ عدد الاعضاء__**',`[** __${msg.guild.memberCount}__ **]`,true)
+      .addField(':large_blue_circle:**__ عدد الاعضاء الاونلاين__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
+      .addField(':pencil:**__ الرومات الكتابية__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
+      .addField(':microphone:**__ رومات الصوت__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
+      .addField(':crown:**__ الأونـر__**',`**${msg.guild.owner}**`,true)
+      .addField(':id:**__ ايدي السيرفر__**',`**${msg.guild.id}**`,true)
+      .addField(':date:**__ تم عمل السيرفر في__**',msg.guild.createdAt.toLocaleString())
+      msg.channel.send({embed:embed});
+    }
+  });
 client.login(process.env.BOT_TOKEN);
